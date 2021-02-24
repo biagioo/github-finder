@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import './App.css';
 
@@ -12,9 +11,6 @@ class App extends Component {
     loading: false,
   };
 
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-  };
   async componentDidMount() {
     this.setState({ loading: true });
 
@@ -34,13 +30,23 @@ class App extends Component {
 
     this.setState({ users: res.data.items, loading: false });
   };
+
+  //clear users from state
+
+  clearUsers = () => this.setState({ users: [], loading: false });
+
   render() {
+    const { users, loading } = this.state;
     return (
       <div className='App'>
         <Navbar />
         <div className='container'>
-          <Search searchUsers={this.searchUsers} />
-          <Users loading={this.state.loading} users={this.state.users} />
+          <Search
+            searchUsers={this.searchUsers}
+            clearUsers={this.clearUsers}
+            showClear={users.length > 0 ? true : false}
+          />
+          <Users loading={loading} users={users} />
         </div>
       </div>
     );
