@@ -6,6 +6,7 @@ import Search from './components/users/Search';
 import axios from 'axios';
 import './App.css';
 import Alert from './components/layout/Alert';
+import About from './components/pages/About';
 
 class App extends Component {
   state = {
@@ -59,7 +60,7 @@ class App extends Component {
               <Route
                 exact
                 path='/'
-                render={props => (
+                render={() => (
                   <Fragment>
                     <Search
                       searchUsers={this.searchUsers}
@@ -71,6 +72,7 @@ class App extends Component {
                   </Fragment>
                 )}
               />
+              <Route exact path='/about' component={About} />
             </Switch>
           </div>
         </div>
