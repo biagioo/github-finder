@@ -12,7 +12,7 @@ import {
 
 const GithubState = props => {
   const initialState = {
-    user: [],
+    users: [],
     user: {},
     repos: [],
     loading: false,
@@ -39,7 +39,7 @@ const GithubState = props => {
         loading: state.loading,
       }}
     >
-      {props.childern}
+      {props.children}
     </GithubContext.Provider>
   );
 };
