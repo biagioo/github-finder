@@ -73,7 +73,6 @@ const App = () => {
           <Navbar />
           <div className='container'>
             <Alert alert={alert} />
-
             <Switch>
               <Route
                 exact
