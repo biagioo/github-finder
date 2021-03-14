@@ -11,23 +11,9 @@ import './App.css';
 import GithubState from './context/github/GithubState';
 
 const App = () => {
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-
-  // GET A SINGLE USER
-  const getUser = async username => {
-    setLoading(true);
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    setUser(res.data);
-    setLoading(false);
-  };
 
   // GET USER REPOS
   const getUserRepos = async username => {
@@ -62,7 +48,7 @@ const App = () => {
                 render={() => (
                   <Fragment>
                     <Search setAlert={showAlert} />
-                    <Users loading={loading} users={users} />
+                    <Users />
                   </Fragment>
                 )}
               />
@@ -71,14 +57,7 @@ const App = () => {
                 exact
                 path='/user/:login'
                 render={props => (
-                  <User
-                    {...props}
-                    getUser={getUser}
-                    getUserRepos={getUserRepos}
-                    user={user}
-                    repos={repos}
-                    loading={loading}
-                  />
+                  <User {...props} getUserRepos={getUserRepos} repos={repos} />
                 )}
               />
             </Switch>
