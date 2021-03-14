@@ -38,7 +38,8 @@ const GithubState = props => {
 
   //GET REPOS
 
-  //CLEAR USERS
+  // CLEAR USERS FROM STATE
+  const clearUsers = () => dispatch({ type: CLEAR_USERS });
 
   //SET LOADING
   const setLoading = () => dispatch({ type: SET_LOADING });
@@ -51,6 +52,7 @@ const GithubState = props => {
         repos: state.repos,
         loading: state.loading,
         searchUsers,
+        clearUsers,
       }}
     >
       {props.children}
